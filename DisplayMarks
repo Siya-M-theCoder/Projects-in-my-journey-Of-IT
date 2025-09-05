@@ -1,0 +1,72 @@
+import java.util.Scanner;
+public class DisplayMarks{
+	public static void main (String[]args){
+		Scanner kb = new Scanner(System.in);
+		final double STPERC=0.6;
+		final double CTPERC=0.4;
+		int iStdNum,iNumStuReg=0;
+		int iCount=1;
+		int iCTCount=1,iFail=0,iSup=0,iPass=0,iNotQ=0;
+		double rST1=0,rAvg=0,rSTotal=0,rCT1=0,rCTotal=0,rExamMark=0,rFinalMark=0,rPredicate=0;
+		System.out.println("Enter the total number of students who registered for this course ");
+		iNumStuReg=kb.nextInt();
+		System.out.println("Please enter your student number or 999 to terminate the program");
+		iStdNum=kb.nextInt();
+		while(iStdNum!=999)
+		{   
+	       while(iCount<=3){
+				System.out.println("Enter marks the semester test "+ iCount);
+			   rST1=kb.nextDouble();
+			   rSTotal+=rST1;
+			   iCount++;
+              			   
+		   }
+		 
+		 while(iCTCount<=4){
+			  System.out.println("Enter marks for class test "+ iCTCount);
+			  rCT1=kb.nextDouble();
+			  rCTotal+=rCT1;
+			  iCTCount++;
+		  }
+		  rPredicate=((rSTotal/3.0)*STPERC)+((rCTotal/4.0)*CTPERC);
+		  if(rPredicate>=40)
+		  {
+			  System.out.print("Enter exam mark");
+			  rExamMark=kb.nextDouble();
+			  rFinalMark=(rExamMark+rPredicate)/2.0;
+			  if(rFinalMark<45)
+			  {
+				  System.out.println(iStdNum +"You have failed the module");
+				 iFailed++;
+				  
+			  }
+			  else if(rFinalMark>44&&rFinalMark<50)
+			  {
+				  System.out.println(iStdNum +"You qualify for supplementary");
+				  iSupp++;
+			  }
+			  else{
+				  System.out.println( iStdNum + "You have passed the module ");
+				  iPass++;
+			  }
+		  }
+		  else{
+			  System.out.println("You did not meet the requirements");
+			  iNotQ++;
+		  }
+		  System.out.println("Enter student number or 999 to end program");
+		  iStdNum=kb.nextInt();
+			
+		}
+		System.out.println("Progamming module report ");
+		System.out.println("Total number of students who registered for the module\t"+ iNumStuReg);
+		System.out.println("Number of students who did not qualify to wite the exam \t" + iNotQ);
+		System.out.println("Number of students who passed the module \t "+ iPass);
+		System.out.println("Number of students who qualify for supplementary\t" + iSupp);
+		System.out.println("Number of students who failed before the supplementary \t" + iFailed);
+		System.out.println("The student with final mark \t"+ iStdNum +"with a mark of"+ Math.round(rFinalMark)+ "%");
+		System.out.println("The average final mark \t" + iNotQ);
+		
+		
+	}
+}
